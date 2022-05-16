@@ -1,0 +1,228 @@
+{
+  "login": [
+    {
+      "id": 1,
+      "username": "Shivateja",
+      "mobileno": "9704401708",
+      "email": "shivateja@gmail.com",
+      "password": "Shivateja@123"
+    },
+    {
+      "id": 2,
+      "username": "Varun",
+      "mobileno": "9999999999",
+      "email": "varun@gmail.com",
+      "password": "varun"
+    },
+    {
+      "id": 3,
+      "username": "Aditya",
+      "mobileno": "8888888888",
+      "email": "aditya@gmail.com",
+      "password": "aditya"
+    },
+    {
+      "id": 2,
+      "username": "Varun",
+      "mobileno": "7777777777",
+      "email": "praveen@gmail.com",
+      "password": "praveen"
+    },
+    {
+      "username": "Shiva",
+      "mobileno": "7894561230",
+      "email": "shiva@gmail.com",
+      "password": "shiva",
+      "id": 4
+    },
+    {
+      "username": "Shiva1",
+      "mobileno": "987456123",
+      "email": "abc@gamil.com",
+      "password": "shiva",
+      "id": 5
+    },
+    {
+      "username": "Shiva1",
+      "mobileno": "987456123",
+      "email": "abc@gamil.com",
+      "password": "shiva",
+      "id": 6
+    },
+    {
+      "username": "Shiva1",
+      "mobileno": "987456123",
+      "email": "abc@gamil.com",
+      "password": "shiva",
+      "id": 7
+    },
+    {
+      "username": "sfdjk",
+      "mobileno": "493u02",
+      "email": "djkf@gajk.com",
+      "password": "fdaskl",
+      "id": 8
+    },
+    {
+      "username": "Shiva",
+      "mobileno": "732874",
+      "email": "843@ktjaf.co",
+      "password": "kjlfd",
+      "id": 9
+    },
+    {
+      "username": "Shiva",
+      "mobileno": "732874",
+      "email": "843@ktjaf.co",
+      "password": "kjlfd",
+      "id": 10
+    },
+    {
+      "username": "klfdaj",
+      "mobileno": "32940i",
+      "email": "kljdfs2@gkjla.c",
+      "password": "fdkasf",
+      "id": 11
+    },
+    {
+      "username": "klfdaj",
+      "mobileno": "32940i",
+      "email": "kljdfs2@gkjla.c",
+      "password": "fdkasf",
+      "id": 12
+    },
+    {
+      "username": "sriram",
+      "mobileno": "3487294384",
+      "email": "sriram@gmail.com",
+      "password": "sriram",
+      "id": 13
+    },
+    {
+      "username": "varunn",
+      "mobileno": "442344",
+      "email": "varun@gmail.com",
+      "password": "varun",
+      "id": 14
+    }
+  ],
+  "cart": [],
+  "Food": [
+    [
+      {
+        "id": 1,
+        "foodname": "Chicken Biryani",
+        "restaurant": "Paradise",
+        "rating": 4.3,
+        "time": 60,
+        "cost": 249,
+        "imglink": "https://media.gettyimages.com/photos/vegetable-pulao-indian-food-picture-id670907141?k=20&m=670907141&s=612x612&w=0&h=b6sjr4yZSAxHErdIWazF__7pVCbqCBneXw4sTXYwli0="
+      },
+      {
+        "id": 1,
+        "foodname": "Panner Biryani",
+        "restaurant": "Paradise",
+        "rating": 4.2,
+        "time": 45,
+        "cost": 199,
+        "imglink": "https://cdn3.mycity4kids.com/images/article-images/web/headersV2/img-20190429-5cc6915043335.jpg"
+      },
+      {
+        "id": 1,
+        "foodname": "Veg Biryani",
+        "restaurant": "Paradise",
+        "rating": 3.9,
+        "time": 35,
+        "cost": 179,
+        "imglink": "https://th.bing.com/th/id/R.dc1e52d9936ffe726cfa54fc9ccc4992?rik=c0%2fhcSWE25lOhw&riu=http%3a%2f%2fwww.spiceindiaonline.com%2fwp-content%2fuploads%2fvegetablebriyani2.jpg&ehk=OVweeEraNVvBq%2fPCUukeouJ7oHqSrq0W0f%2fxbysWg5o%3d&risl=&pid=ImgRaw&r=0"
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "foodname": "Idly",
+        "restaurant": "Rss",
+        "rating": 4.3,
+        "time": 45,
+        "cost": 30,
+        "imglink": "https://th.bing.com/th/id/OIP.5KmpKqyDrEWQf7Sw53yP_wHaE8?w=264&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7"
+      },
+      {
+        "id": 2,
+        "foodname": "Dosa",
+        "restaurant": "Dosa Center",
+        "rating": 2.6,
+        "time": 30,
+        "cost": 50,
+        "imglink": "https://th.bing.com/th/id/OIP.J_mT6Prih4aJXWnMgOuCrgHaE6?w=301&h=200&c=7&r=0&o=5&dpr=1.38&pid=1.7"
+      },
+      {
+        "id": 3,
+        "foodname": "Puri",
+        "restaurant": "Puri Center",
+        "rating": 5,
+        "time": 15,
+        "cost": 35,
+        "imglink": "https://th.bing.com/th/id/OIP.Tz860y8k0Vp7UDwSQjHh3gHaHa?pid=ImgDet&rs=1"
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "foodname": "Onions-Paneer Pizza",
+        "restaurant": "Pizza Hut",
+        "rating": 3.8,
+        "time": 40,
+        "cost": 110,
+        "imglink": "https://th.bing.com/th/id/OIP.Y2bSiSPmG5iSWpEoU1wOzQHaFj?w=219&h=187&c=7&r=0&o=5&dpr=1.38&pid=1.7"
+      },
+      {
+        "id": 2,
+        "foodname": "Garden-Delight Pizza",
+        "restaurant": "Pizza Hut",
+        "rating": 2.7,
+        "time": 50,
+        "cost": 167,
+        "imglink": "https://th.bing.com/th/id/OIP.RgzXIL2jt09060QsPpXB8AHaFj?w=221&h=180&c=7&r=0&o=5&dpr=1.38&pid=1.7"
+      },
+      {
+        "id": 3,
+        "foodname": "Fire-e-chicken and pep Pizza",
+        "restaurant": "Pizza Hut",
+        "rating": 4.7,
+        "time": 30,
+        "cost": 125,
+        "imglink": "https://th.bing.com/th/id/OIP.UVaGl97fp8rrJ68Ij2VRGQAAAA?w=273&h=205&c=7&r=0&o=5&dpr=1.38&pid=1.7"
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "foodname": "Fruit custard recipe",
+        "restaurant": "Ocean of Bakers",
+        "rating": 4.2,
+        "time": 40,
+        "cost": 95,
+        "imglink": "https://www.bing.com/th?id=AMMS_fe510125fb6a4ac4c031b435e6cccfa0&w=197&h=118&c=7&rs=2&qlt=80&o=6&cdv=1&dpr=1.38&pid=16.1"
+      },
+      {
+        "id": 2,
+        "foodname": "Red Velvet",
+        "restaurant": "Ocean of Bakers",
+        "rating": 4.1,
+        "time": 90,
+        "cost": 435,
+        "imglink": "https://th.bing.com/th/id/OIP.zuUsU2bHGwfj_Oq6g3GWUgHaE5?pid=ImgDet&rs=1"
+      },
+      {
+        "id": 3,
+        "foodname": "Ice Creams",
+        "restaurant": "Ocean of Bakers",
+        "rating": 3.8,
+        "time": 45,
+        "cost": 50,
+        "imglink": "https://th.bing.com/th/id/OIP.N9fmEacC2DQqXBy-2ezMRwHaGa?w=233&h=202&c=7&r=0&o=5&dpr=1.38&pid=1.7"
+      }
+    ]
+  ]
+}
