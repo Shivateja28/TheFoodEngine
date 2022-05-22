@@ -1,6 +1,6 @@
 import { faFacebook, faFacebookF, faFacebookMessenger, faInstagram, faInstagramSquare, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Footerlogo from './Images/Footerlogo.png'
+import Footerlogo from '../Images/Footerlogo.png'
 
 
 function Footer(){

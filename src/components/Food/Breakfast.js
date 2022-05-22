@@ -7,26 +7,16 @@ import { useEffect, useState } from "react";
 
 function Breakfast(){
 
-    let data = useSelector(state=>state.Food)
-    const dispatch = useDispatch()
     let [itemdata, setItemData] = useState([])
-    let [img, setimg] = useState("")
 
     useEffect(()=>{
-        axios.get("http://localhost:4000/Food")
-        .then(response => setItemData(response.data[1]))
+        axios.get("http://localhost:4000/product-api/getproduct/Breakfast")
+        .then(response => {
+            setItemData(response.data.payload)
+            console.log(response.data)
+        })
         .catch(err=>console.log(err))
-
-        console.log(itemdata)
-
-        itemdata.map((ele, index) =>console.log(ele.imglink))
     }, [])
-
-    let addintocart = (index)=>{
-        let actionobj = addCart(itemdata[index])
-        dispatch(actionobj)
-        console.log(actionobj, data)
-    }
 
     return(
         <div className="row m-5 p-2 justify-content-center"> 
@@ -34,9 +24,9 @@ function Breakfast(){
         {
             itemdata.map((ele, index) =>
             
-                <div className="col-md-4" key={index}>
+                <div className="col-md-4 col-sm-12 p-2" key={index}>
                     <div className="card" >
-                        <img src={ele.imglink} className="card-img-top" alt="..." width='50px'/>
+                    <img src={ele.img} className="card-img-top" alt="..." width='50px'/>
                         <div className="card-body">
                             <p className="card-title text-danger display-5 m-1">{ele.foodname}</p>
                             <p className="text-dark h5 m-2">{ele.restaurant}</p>
@@ -45,7 +35,7 @@ function Breakfast(){
                                 | <FontAwesomeIcon icon={faMotorcycle}/> Delivery Time <b className="text-primary">{ele.time}min</b> | <FontAwesomeIcon icon={faIndianRupeeSign}/> {ele.cost}/-
                             </p>
                             <div className="p-2">
-                                <button className="btn btn-primary" onClick={()=>addintocart(index)}>Cart</button>
+                                <button className="btn btn-primary">Cart</button>
                             </div>
 
                         </div>

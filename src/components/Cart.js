@@ -13,10 +13,10 @@ function Cart(){
         return result + item.cost;
       }, 0);
 
-    console.log(sum)
+    console.log("SUM : ",sum, " Quantity : ", cartdata.count)
 
     return(
-        <div>
+        <div className='mt-5'>
             
                 
 {/*
