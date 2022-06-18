@@ -6,6 +6,7 @@ export const userLogin = createAsyncThunk('loginuser', async(userCredentialsObje
    
     let response = await axios.post('/user-api/login', userCredentialsObject)
     let data = response.data;
+    console.log("USEROBJ: ", data)
     if(data.message === 'success'){
         //store token in local storage
         localStorage.setItem("token", data.payload);

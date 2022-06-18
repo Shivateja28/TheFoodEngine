@@ -1,11 +1,15 @@
 //create router to handle product api reqs
 const exp = require("express");
 const productApp = exp.Router();
+require('dotenv').config()
 
 const expressAsyncHandler = require('express-async-handler')
 
 //to extract body of request object
 productApp.use(exp.json())
+
+const verifyToken=require('./middlewares/verifyToken')
+
 //PRODUCT API ROUTES
 
 //get all products
@@ -22,7 +26,7 @@ productApp.get('/getproducts', expressAsyncHandler(async(request, response)=>{
 
 
 //get product by ID
-productApp.get("/getproduct/:type", expressAsyncHandler(async(request, response)=>{
+productApp.get("/getproduct/:type",expressAsyncHandler(async(request, response)=>{
 
     //get productCollectionObject
     let productCollectionObject = request.app.get("productCollectionObject")

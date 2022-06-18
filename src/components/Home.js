@@ -1,7 +1,11 @@
 import { Link, Outlet } from 'react-router-dom'
 import imageone from '../Images/image1.png'
+import {Toast} from 'react-bootstrap'
+import trainicon from '../Images/trainicon.png'
+import train from '../Images/train.png'
 
 function Home(){
+
     return(
         <div className='backgroundd '>
             <div className='row'>
@@ -52,6 +56,9 @@ function Home(){
                     </div>
                 </div>
             </div>
+
+
+
             <Outlet/>
         </div>
     )

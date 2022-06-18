@@ -14,6 +14,8 @@ import Defaultapp from './defaultapp'
 import Header from './components/Header'
 import AdminLogin from './components/AdminLogin'
 import AdminDashboard from './components/AdminDashboard'
+import Login from './components/Login'
+import MyOrders from './components/MyOrders'
 
 function App(){
 
@@ -32,12 +34,15 @@ function App(){
           <Route path='/home/desserts' element={<Desserts/>}/>
 
         </Route>
+        <Route path="/login" element={<Login/>}></Route>
         <Route path="/loginpage" element={<LoginPage/>}></Route>
         <Route path="/signuppage" element={<SignupPage/>}></Route>
         <Route path="/cart" element={<Cart/>}></Route>
         <Route path="/aboutus" element={<AboutUs/>}></Route>
         <Route path="/adminlogin" element={<AdminLogin/>}></Route>
         <Route path="/admindashboard" element={<AdminDashboard/>}></Route>
+        <Route path="/myorders" element={<MyOrders/>}></Route>
+
       </Routes>
       <Footer/>
     </div>

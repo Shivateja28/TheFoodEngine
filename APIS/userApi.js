@@ -9,6 +9,8 @@ const bcryptjs = require('bcryptjs')
 
 //import jsonwebtoken to create token
 const jwt = require("jsonwebtoken")
+require("dotenv").config()
+const verifyToken=require('./middlewares/verifyToken')
 
 var cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
@@ -16,7 +18,7 @@ const multer = require("multer");
 
 //configure cloudinary
 cloudinary.config({
-    cloud_name : "shiva28",
+    cloud_name : process.env.CLOUD_NAME,
     api_key : "971944773965588",
     api_secret: "WgGhBmrkQ7to8De35MK3jfYRgPQ",
     secure : true
@@ -63,26 +65,51 @@ userApp.post('/login', expressAsyncHandler(async(request, response)=>{
     let userCollectionObject = request.app.get("userCollectionObject")
     //get user credentials obj from client
     let userCredObj = request.body
-    //search for user by username
-    let userOfDB = await userCollectionObject.findOne({username:userCredObj.username});
-    //If username not existed
-    if(userOfDB == null){
-        response.send({message:"Invalid User"})
-    }
-    //If username existed
-    else{
-        //compare passwords
-        let status = await bcryptjs.compare(userCredObj.password, userOfDB.password)
-        //if passwords not matched
-        if(status == false){
-            response.send({message: "Invalid password"})
+    if(userCredObj.admin === "true"){
+        let userOfDB = await userCollectionObject.findOne({admin:userCredObj.admin});
+        //If username not existed
+        if(userOfDB == null){
+            response.send({message:"Invalid User"})
         }
-        //if passwords are matched
+        //If username existed
         else{
-            //create token
-            let token = jwt.sign({username:userOfDB.username}, 'abcdef', {expiresIn:60/*sec*/})
-            //send token
-            response.send({message : "success", payload:token, userObj:userOfDB})
+            //compare passwords
+            let status = await bcryptjs.compare(userCredObj.password, userOfDB.password)
+            //if passwords not matched
+            if(status == false){
+                response.send({message: "Invalid password"})
+            }
+            //if passwords are matched
+            else{
+                //create token
+                let token = jwt.sign({username:userOfDB.username}, 'abcdef', {expiresIn:500/*sec*/})
+                //send token
+                response.send({message : "success", payload:token, userObj:userOfDB})
+            }
+        }
+    }
+    else
+    {        //search for user by username
+        let userOfDB = await userCollectionObject.findOne({username:userCredObj.username});
+        //If username not existed
+        if(userOfDB == null){
+            response.send({message:"Invalid User"})
+        }
+        //If username existed
+        else{
+            //compare passwords
+            let status = await bcryptjs.compare(userCredObj.password, userOfDB.password)
+            //if passwords not matched
+            if(status == false){
+                response.send({message: "Invalid password"})
+            }
+            //if passwords are matched
+            else{
+                //create token
+                let token = jwt.sign({username:userOfDB.username}, 'abcdef', {expiresIn:60/*sec*/})
+                //send token
+                response.send({message : "success", payload:token, userObj:userOfDB})
+            }
         }
     }
 }))

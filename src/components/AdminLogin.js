@@ -1,6 +1,9 @@
 import {useForm} from 'react-hook-form'
 import { Outlet, useNavigate } from 'react-router-dom'
 import loginimage from '../Images/loginimage.png'
+import {useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
+import {userLogin} from '../Slices/userSlice'
 
 
 
@@ -10,24 +13,20 @@ function AdminLogin(){
 
     const {register, handleSubmit, formState: {errors}} = useForm()
 
+    
+    let {userObj, isError, isLoading, isSuccess, errMsg} = useSelector(state=>state.user)
+    let dispatch = useDispatch()
+
     const navigate = useNavigate()
 
     const onFormSubmit = (userCredentialsObject)=>{
-
-        if(userCredentialsObject.username == "TheFoodEngine"){
-            if(userCredentialsObject.password == "Foodengine"){
-
-                navigate('/admindashboard')
-                alert("Navigating to admin dashboard!!")
-                
-            }
-            else{
-                alert("Invalid Password")
-            }
-        }
-        else{
-            alert("Invalid Username")
-        }
+        
+        userCredentialsObject = {...userCredentialsObject, admin: 'true'}
+        console.log(userCredentialsObject)
+        dispatch(userLogin(userCredentialsObject))
+        if(isSuccess==true){navigate('/admindashboard')}
+    
+        
     }
 
 
