@@ -1,115 +1,85 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faBus, faCreditCard, faGlobe, faHome, faMobile, faMotorcycle, faIndianRupeeSign} from '@fortawesome/free-solid-svg-icons';
 import {useDispatch, useSelector} from 'react-redux'
-import { addCart } from "../../Slices/cartSlice";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
+import {Toast} from 'react-bootstrap'
+import train from '../Images/train.png'
+import trainicon from '../Images/trainicon.png'
 
 function Biryani(){
 
-    let data = useSelector(state=>state.cart)
-    const dispatch = useDispatch()
-    let [itemdata, setItemData] = useState()
+    let [itemdata, setItemData] = useState([])
+
+    let [msg, setMsg] = useReducer((state, action)=>{
+        return action
+    }, '')
+
+    let {userObj, isError, isLoading, isSuccess, errMsg} = useSelector(state=>state.user)
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/cart")
-        .then(response => setItemData(response.data[0]))
+        axios.get("http://localhost:4000/product-api/getproduct/Biryani")        
+        .then(response => {
+            setItemData(response.data.payload)
+            console.log(response.data)
+        })
         .catch(err=>console.log(err))
-
-        console.log(itemdata)
     }, [])
 
-
-    let addintocart = (index)=>{
-        let actionobj = addCart(itemdata[index])
-        dispatch(actionobj)
-        console.log(actionobj, data)
+    
+    let addtoCart = (index)=>{
+        delete itemdata[index]._id;
+        
+        itemdata[index] = {...itemdata[index], username: userObj.username}
+        console.log(`itemdata[${index}]: `, itemdata[index])
+        axios.post("http://localhost:4000/cart-api/add-product", itemdata[index])
+        .then(response=>{
+            console.log("RESONPSE>DATA>MESSAGE  :", response.data.message)
+            setMsg(String(response.data.message))
+            console.log(msg)
+            setTimeout(()=>{
+                setMsg("")
+            }, 8000)
+        })
+        .catch(err=>console.log(err))
     }
 
     return(
         <div className="row m-5 p-2 justify-content-center"> 
-            <div className="col-md-4">
-                <div className="card" >
-                    <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/von4k7mxgbgv0w58apx6" className="card-img-top" alt="..." width='50px'/>
-                    <div className="card-body">
-                        <h5 className="card-title text-danger h1 m-1">Mefil Restaurant</h5>
-                        <p className="card-text text-dark h5 m-1 mt-3">Nizampet X Road, Kukatpally</p>
-                        <p className="h5 pt-4">
-                            <FontAwesomeIcon icon={faStar} /> 3.8
-                            | <FontAwesomeIcon icon={faMotorcycle}/> Delivery Time <b className="text-primary">39min</b> | <FontAwesomeIcon icon={faIndianRupeeSign}/> 299/-
-                        </p>
-                        <div className="p-2">
-                            <button className="btn btn-primary" onClick={()=>{addintocart(0)}} >Cart</button>
+        
+        {
+            itemdata.map((ele, index) =>
+            
+                <div className="col-md-4 col-sm-12 p-2" key={index}>
+                    <div className="card" >
+                    <img src={ele.img} className="card-img-top" alt="..." width='50px'/>
+                        <div className="card-body">
+                            <p className="card-title text-danger display-5 m-1">{ele.foodname}</p>
+                            <p className="text-dark h5 m-2">{ele.restaurant}</p>
+                            <p className="h5 pt-4">
+                                <FontAwesomeIcon icon={faStar} /> {ele.rating}
+                                | <FontAwesomeIcon icon={faMotorcycle}/> Delivery Time <b className="text-primary">{ele.time}min</b> | <FontAwesomeIcon icon={faIndianRupeeSign}/> {ele.cost}/-
+                            </p>
+                            <div className="p-2">
+                                <button type = "button" onClick={()=>{addtoCart(index)}}>Add To Cart</button>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
+            
+            )
+        }
 
-            <div className="col-md-4">
-                <div className="card" >
-                    <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/ey73uihvasbgpjmophix" className="card-img-top" alt="..." width='50px'/>
-                    <div className="card-body">
-                        <h5 className="card-title text-danger h1 m-1">Raghav</h5>
-                        <p className="card-text text-dark h5 m-1 mt-3">Nizampet X Road, Kukatpally</p>
-                        <p className="h5 pt-4">
-                            <FontAwesomeIcon icon={faStar} /> 3.8
-                            | <FontAwesomeIcon icon={faMotorcycle}/> Delivery Time <b className="text-primary">39min</b> | <FontAwesomeIcon icon={faIndianRupeeSign}/> 299/-
-                        </p>
-                        <div className="p-2">
-                            <button className="btn btn-primary" onClick={()=>addintocart(1)}>Cart</button>
-                        </div>
+        {msg!=""?
+            <div class="containe w-50">
+                <img src={train} className = "img1" alt="Cinque Terre" width="300" height="150"/>------
+                <img src={trainicon} className = "img2" width="300" height="150"/>
+                <div className="message">{msg}</div>
+            </div>:<p></p>
+        }
 
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-md-4">
-                <div className="card" >
-                    <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/dlw5uiehxkcg0dmpthln" className="card-img-top" alt="..." width='50px'/>
-                    <div className="card-body">
-                        <h5 className="card-title text-danger h1 m-1">RSSS</h5>
-                        <p className="card-text text-dark h5 m-1 mt-3">Nizampet X Road, Kukatpally</p>
-                        <p className="h5 pt-4">
-                            <FontAwesomeIcon icon={faStar} /> 3.8
-                            | <FontAwesomeIcon icon={faMotorcycle}/> Delivery Time <b className="text-primary">39min</b> | <FontAwesomeIcon icon={faIndianRupeeSign}/> 299/-
-                        </p>
-                        <div className="p-2">
-                            <button className="btn btn-primary" onClick={()=>addintocart(2)}>Cart</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
-            {/*
-            <div className="col-md-4">
-                <div className="card" >
-                    <img src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/dlw5uiehxkcg0dmpthln" className="card-img-top" alt="..." width='50px'/>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-md-4">
-                <div className="card" >
-                    <img src="" className="card-img-top" alt="..." width='50px'/>
-                    <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" className="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        */}
         </div>
-    
     )
 }
 

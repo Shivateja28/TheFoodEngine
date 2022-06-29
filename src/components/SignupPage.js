@@ -10,55 +10,52 @@ function SignupPage(){
     const [logindata, setlogin] = useState()
     let [check, setCheck] = useState(-1)
 
+    let [img, setImg]  = useState(null);
+
+    const onImageSelect = (event)=>{
+        setImg(event.target.files[0]);
+    }
+
+
     const navigate = useNavigate()
 
-    const onFormSubmit=(userData)=>{
+    const onFormSubmit=(userObj)=>{
 
-        axios.get("http://localhost:4000/login")
-        .then(response=>setlogin(response.data))
-        .catch(err=>console.log(err))
-        let i=0;
-        for(i = 0;i<logindata.length;i++){
-            console.log("logindata[",i,"].username", logindata[i].username, "userData.username",userData.username)
-            console.log("logindata[",i,"].password", logindata[i].password, "userData.password",userData.password)
-            if((logindata[i].username == userData.username) && (logindata[i].password == userData.password)){
-                setCheck(0)
-                check = 0
-                console.log("Inside for", check)
-                break
+        let formData = new FormData();
+        formData.append("userObj", JSON.stringify(userObj));
+        formData.append("photo", img);
+
+        //http post req
+        axios.post('http://localhost:4000/user-api/create-user', formData)
+        .then(response=>{
+            if(response.data.message == "New User created"){
+                setCheck(1)
             }
-        }
-        console.log("Check:", check)
-        if(check != 0){
-            setCheck(1)
-            check = 1
-        }
-        if(check == 1){
-            axios.post("http://localhost:4000/login", userData)
-            .then(response=>console.log(response))
-            .catch(err=>console.log(err))
-            console.log("Inside axios", check)
-        }
-
-    
-
+            else if(response.data.message == "Username has already taken..Plz choose another"){
+                setCheck(0)
+            }
+        })
+        .catch(error=>alert("Something went wrong in creating user"))
 
     }
 
+    let navigatetologin = ()=>{
+        navigate('/loginpage')
+    }
+
+    
     return(
         <div>
             <div className='row'>
-                <div className="card w-75 mx-auto">
                     
-                    <div className="row g-0">
-                        
-                        <div className="col-md-7">
+{/*                         
+                        <div className="col-3">
                         <img src="https://th.bing.com/th/id/OIP.SVQuKv9AV3rBM5ZnfCmtigHaE8?w=299&h=200&c=7&r=0&o=5&dpr=1.38&pid=1.7" alt="..." width= '1200'/>
-                        </div>
-                        <div className="col-md-5 bgcolor">
+                        </div> */}
+                        <div className="bgcolor mx-auto m-5 w-md-50 border rounded" style = {{width : "1000px"}}>
                         <div className="card-body text-light">
-                            <form onSubmit={handleSubmit(onFormSubmit)} className ='w-75 mx-auto m-5 p-2 pt-5 pb-5'>
-                            <p className='h1 text-light'>Sign Up</p>
+                            <form onSubmit={handleSubmit(onFormSubmit)} className ='w-75 mx-auto m-5 p-2 pt-5 pb-5 '>
+                            <p className='h1 text-light text-center'>Sign Up</p>
 
                                 <label htmlFor="username" className= "h3 mt-4">UserName</label>
                                 <input type = "text" id = "username" className="form-control" {...register("username", {required: true})} />
@@ -77,17 +74,26 @@ function SignupPage(){
                                 <input type="password" id = 'pwd' className='form-control' {...register("password", {required: true, minLength:5})}/>
                                 {errors.password?.type === 'required' && <p>*Password Required</p>}
                                 {errors.password?.type === 'minLength' && <p>*Min Length should be 5</p> }
-                                <button type = "Submit" className='bg-dark text-light p-2 m-3 ms-0 w-50'>Submit</button>
+
+
+                                <input type = "file" className='form-control mt-4' {...register("photo", {required:true})} onChange = {(event)=>onImageSelect(event)}/>
+                                {errors.photo?.type === 'required' && <p>*Required</p>}
+                                <div className='text-center'>
+                                    <button type = "Submit" className='bg-dark text-light p-2 mt-5 ms-0 w-50'>Submit</button>
+                                </div>
                                 {check==1 && <p className='h2 text-light'>Sign Up successfull Redirecting to Login page
                                 {setTimeout(() => {
                                     navigate('/loginpage')
                                 }, 5000)}</p>}
-                                {check==0 && <div><p className='h5 text-light'>Username already exists</p><Link className="nav-link active text-light bg-dark text-center w-50" to= "/loginpage">Login</Link></div>}
+                                {check==0 && 
+                                    <>
+                                        <p>UserName Already exists Try Login or Create new User</p>
+                                        <button type = "button" onClick={navigatetologin}>Login</button>
+                                    </>
+                                }
                             </form>
                         </div>
                         
-                        </div>
-                    </div>
                     </div>
             </div>
         </div>
