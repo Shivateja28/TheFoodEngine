@@ -47,17 +47,15 @@ function SignupPage(){
     return(
         <div>
             <div className='row'>
-                <div className="card w-75 mx-auto">
                     
-                    <div className="row g-0">
-                        
-                        <div className="col-md-7">
+{/*                         
+                        <div className="col-3">
                         <img src="https://th.bing.com/th/id/OIP.SVQuKv9AV3rBM5ZnfCmtigHaE8?w=299&h=200&c=7&r=0&o=5&dpr=1.38&pid=1.7" alt="..." width= '1200'/>
-                        </div>
-                        <div className="col-md-5 bgcolor">
+                        </div> */}
+                        <div className="bgcolor mx-auto m-5 w-md-50 border rounded" style = {{width : "1000px"}}>
                         <div className="card-body text-light">
-                            <form onSubmit={handleSubmit(onFormSubmit)} className ='w-75 mx-auto m-5 p-2 pt-5 pb-5'>
-                            <p className='h1 text-light'>Sign Up</p>
+                            <form onSubmit={handleSubmit(onFormSubmit)} className ='w-75 mx-auto m-5 p-2 pt-5 pb-5 '>
+                            <p className='h1 text-light text-center'>Sign Up</p>
 
                                 <label htmlFor="username" className= "h3 mt-4">UserName</label>
                                 <input type = "text" id = "username" className="form-control" {...register("username", {required: true})} />
@@ -78,10 +76,11 @@ function SignupPage(){
                                 {errors.password?.type === 'minLength' && <p>*Min Length should be 5</p> }
 
 
-                                <input type = "file" className='form-control' {...register("photo", {required:true})} onChange = {(event)=>onImageSelect(event)}/>
+                                <input type = "file" className='form-control mt-4' {...register("photo", {required:true})} onChange = {(event)=>onImageSelect(event)}/>
                                 {errors.photo?.type === 'required' && <p>*Required</p>}
-
-                                <button type = "Submit" className='bg-dark text-light p-2 m-3 ms-0 w-50'>Submit</button>
+                                <div className='text-center'>
+                                    <button type = "Submit" className='bg-dark text-light p-2 mt-5 ms-0 w-50'>Submit</button>
+                                </div>
                                 {check==1 && <p className='h2 text-light'>Sign Up successfull Redirecting to Login page
                                 {setTimeout(() => {
                                     navigate('/loginpage')
@@ -95,8 +94,6 @@ function SignupPage(){
                             </form>
                         </div>
                         
-                        </div>
-                    </div>
                     </div>
             </div>
         </div>

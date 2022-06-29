@@ -28,7 +28,7 @@ function AboutUs(){
                             <img src={praveen} className = "flip" />
                         </div>
                         <div className="flip-card-back">
-                            <h1>Praveen</h1> 
+                            <p className='h1'>Praveen</p> 
                             <p>20071A0508</p> 
                             
                         </div>
@@ -40,7 +40,7 @@ function AboutUs(){
                             <img src={varun} className = "flip" />
                         </div>
                         <div className="flip-card-back">
-                            <h1>Varun</h1> 
+                            <p className='h1'>Varun</p> 
                             <p>20071A0508</p> 
                             
                         </div>
@@ -64,8 +64,9 @@ function AboutUs(){
                             <img src={aditya} className = "flip" />
                         </div>
                         <div className="flip-card-back">
-                            <h1>Sriram Aditya</h1> 
+                        <p className='h1'>Sriram Aditya</p> 
                             <p>20071A0508</p> 
+                             
                         </div>
                     </div>
                 </div>

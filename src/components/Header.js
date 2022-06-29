@@ -17,7 +17,6 @@ import {FiUserPlus} from 'react-icons/fi'
 
 
 
-
 function Header(){
 
     let cartData = useSelector(state=>state.cart)
@@ -48,8 +47,8 @@ function Header(){
     return (
         <div>
             <Navbar bg="light" expand="lg">          
-            <div className='container-fluid '>
-                <Navbar.Brand><Link to = "/home"><img src={logo} style={{height:'150px'}}/></Link></Navbar.Brand>
+            <div className='container-fluid navbar'>
+                <Navbar.Brand><Link to = "/home"><img src={logo} style={{height:'90px'}}/></Link></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <div className='ms-auto'>
@@ -75,9 +74,9 @@ function Header(){
                         </>:
                         <>
                             <Nav className = "p-3">
-                                <Link className="h3 p-3 nav-link active textcolor" to= "/login" >Login<IoLogIn/></Link>  
-                                <Link className="h3 p-3 nav-link active textcolor" to= "/signuppage">Signup  <FiUserPlus/></Link>
-                                <Link className="h3 p-3 nav-link active textcolor" to= "/aboutus">About Us  <FontAwesomeIcon icon={faCircleInfo} /></Link>     
+                                <Link className="h4 p-3 nav-link active textcolor" to= "/login" >Login<IoLogIn/></Link>  
+                                <Link className="h4 p-3 nav-link active textcolor" to= "/signuppage">Signup  <FiUserPlus/></Link>
+                                <Link className="h4 p-3 nav-link active textcolor" to= "/aboutus">About Us  <FontAwesomeIcon icon={faCircleInfo} /></Link>     
                             </Nav>
                         </>
                     }

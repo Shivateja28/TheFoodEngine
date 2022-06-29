@@ -205,7 +205,6 @@ function Cart(){
         />
         </>}</>
     }
-{orderId}
 
       </div>
     )

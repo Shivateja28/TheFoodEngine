@@ -16,6 +16,8 @@ import AdminLogin from './components/AdminLogin'
 import AdminDashboard from './components/AdminDashboard'
 import Login from './components/Login'
 import MyOrders from './components/MyOrders'
+import FAB from './components/FAB'
+import Writetous from './components/Writetous'
 
 function App(){
 
@@ -42,9 +44,14 @@ function App(){
         <Route path="/adminlogin" element={<AdminLogin/>}></Route>
         <Route path="/admindashboard" element={<AdminDashboard/>}></Route>
         <Route path="/myorders" element={<MyOrders/>}></Route>
+        <Route path="/writetous" element={<Writetous/>}></Route>
 
-      </Routes>
+
+      </Routes>    
+      <FAB/>
+
       <Footer/>
+
     </div>
     
   )
