@@ -21,19 +21,19 @@ function SignupPage(){
 
     const onFormSubmit=(userObj)=>{
 
-        let formData = new FormData();
-        formData.append("userObj", JSON.stringify(userObj));
-        formData.append("photo", img);
-
         //http post req
-        axios.post('http://localhost:4000/user-api/create-user', formData)
+        axios.post('http://localhost:4000/user-api/create-user', userObj)
         .then(response=>{
             if(response.data.message == "New User created"){
+                console.log(response.data.message)
                 setCheck(1)
             }
             else if(response.data.message == "Username has already taken..Plz choose another"){
+                console.log(response.data.message)
                 setCheck(0)
             }
+            console.log(userObj)
+            console.log(response.data.message)
         })
         .catch(error=>alert("Something went wrong in creating user"))
 
@@ -76,14 +76,12 @@ function SignupPage(){
                                 {errors.password?.type === 'minLength' && <p>*Min Length should be 5</p> }
 
 
-                                <input type = "file" className='form-control mt-4' {...register("photo", {required:true})} onChange = {(event)=>onImageSelect(event)}/>
-                                {errors.photo?.type === 'required' && <p>*Required</p>}
                                 <div className='text-center'>
                                     <button type = "Submit" className='bg-dark text-light p-2 mt-5 ms-0 w-50'>Submit</button>
                                 </div>
                                 {check==1 && <p className='h2 text-light'>Sign Up successfull Redirecting to Login page
                                 {setTimeout(() => {
-                                    navigate('/loginpage')
+                                    navigate('/loginpage') 
                                 }, 5000)}</p>}
                                 {check==0 && 
                                     <>

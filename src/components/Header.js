@@ -55,7 +55,6 @@ function Header(){
                     {isSuccess === true?
                         <>
                             <Nav className = "me-5">
-                                <img src = {userObj.profileImg} className = "profile"></img>
                                 <Dropdown>
                                     <Dropdown.Toggle id = "dropdown-basic" className = "mt-1 me-5 bg-light text-dark m-3 mt-3 ">
                                         {userObj.username}

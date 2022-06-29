@@ -115,15 +115,13 @@ userApp.post('/login', expressAsyncHandler(async(request, response)=>{
 }))
 
 //Create a route to 'create-user'
-userApp.post('/create-user', upload.single("photo") ,expressAsyncHandler(async(request, response)=>{
-  
-    //get link from cloudinary
-    console.log(request.file.path);
+userApp.post('/create-user', expressAsyncHandler(async(request, response)=>{
+    
     //get userCollection Object
     let userCollectionObject = request.app.get("userCollectionObject")
-    //get userObj as string from client and convert into object
-    let newUserObj = JSON.parse(request.body.userObj);
-   //search for user by username
+    //get userObj from client
+    let newUserObj = request.body;
+    //search for user by username
     let userOfDB = await userCollectionObject.findOne({username:newUserObj.username})
     //if user existed
     if(userOfDB !== null){
@@ -135,10 +133,6 @@ userApp.post('/create-user', upload.single("photo") ,expressAsyncHandler(async(r
         let hashedPassword = await bcryptjs.hash(newUserObj.password, 6)
         //replace plain password with hashed password in newUserObj
         newUserObj.password = hashedPassword;
-        //add profile image link to newUserObj
-        newUserObj.profileImg = request.file.path;
-        //remove photo property
-        delete newUserObj.photo;
         //insert newUser
         await userCollectionObject.insertOne(newUserObj)
         //send response
@@ -146,6 +140,7 @@ userApp.post('/create-user', upload.single("photo") ,expressAsyncHandler(async(r
     }
 
 }))
+
 
 //Create a route to modify user data
 userApp.put('/update-user', expressAsyncHandler(async(request, response)=>{
